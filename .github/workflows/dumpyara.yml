@@ -56,4 +56,4 @@ jobs:
               sudo bash dumpyara.sh "$ROM_URL"
 
 env:
-  ROM_URL: 
+  ROM_URL: https://bigota.d.miui.com/V13.0.1.0.SJOMIXM/miui_MERLINGlobal_V13.0.1.0.SJOMIXM_23a9625209_12.0.zip
