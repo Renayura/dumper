@@ -22,16 +22,16 @@ jobs:
 
        - name: Clone Dumpyara
          run: |
-              git clone --depth=1 https://github.com/Renayura/DumprX
+              git clone --depth=1 https://github.com/Renayura/dumpyara
               
               
        - name: Setup Dumpyara environment
-         working-directory: DumprX
+         working-directory: dumpyara
          run: |
               sudo bash setup.sh
 
        - name: Setup config envs And Begin Dump
-         working-directory: DumprX
+         working-directory: dumpyara
          run: |
               NAME_OF_THIS_REPO="dumper"
               GITHUB_ORG_NAME="AthenaPrjk"
@@ -41,11 +41,9 @@ jobs:
               GIT_GITHUB_TOKEN="${{ secrets.GIT_GITHUB_TOKEN }}"
               TG_BOT_TOKEN="${{ secrets.TG_BOT_TOKEN }}"
               TG_CHAT="@HimemoriCH"
-              echo "$GITHUB_ORG_NAME" > .github_orgname
-              echo "$GIT_GITHUB_TOKEN" > .github_token
-              echo "$GITHUB_USERNAME" > .github_username
-              echo "$TG_BOT_TOKEN" > .tg_token
-              echo "$TG_CHAT" > .tg_chat
+              echo "$GIT_GITHUB_TOKEN" > .githubtoken
+              echo "$TG_BOT_TOKEN" > .tgtoken 
+              echo "$TG_CHAT" > .tgchat
               aria2c -o .tg_chat_id https://raw.githubusercontent.com/${GITHUB_USERNAME}/${NAME_OF_THIS_REPO}/main/CHAT_ID.txt
               aria2c -o .user_first_name https://raw.githubusercontent.com/${GITHUB_USERNAME}/${NAME_OF_THIS_REPO}/main/USER_FIRST_NAME.txt
               aria2c -o .user_id https://raw.githubusercontent.com/${GITHUB_USERNAME}/${NAME_OF_THIS_REPO}/main/USER_ID.txt
@@ -55,7 +53,7 @@ jobs:
               echo ""$(curl -X POST -H 'Content-Type: application/json' -d "{\"chat_id\": \"$(< .tg_chat_id)\", \"text\": \"Starting Dump...\", \"disable_notification\": true}" https://api.telegram.org/bot$TG_BOT_TOKEN/sendMessage | grep -oP "(\"message_id\":)[0-9]+" | cut -d ":" -f 2)"" > .message_id
               git config --global user.name "Renayura"
               git config --global user.email "renayura@proton.me"
-              sudo bash dumper.sh "$ROM_URL"
+              sudo bash dumpyara.sh "$ROM_URL"
 
 env:
   ROM_URL: 
