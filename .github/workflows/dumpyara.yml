@@ -56,4 +56,4 @@ jobs:
               sudo bash dumpyara.sh "$ROM_URL"
 
 env:
-  ROM_URL: https://bigota.d.miui.com/V12.5.20.0.RKUMIXM/miui_SELENEGlobal_V12.5.20.0.RKUMIXM_f17c15d0d7_11.0.zip
+  ROM_URL: https://mirrorbot.himemoria.workers.dev/0:/Tecno_LG8N_MT6789_V963_220823.zip
